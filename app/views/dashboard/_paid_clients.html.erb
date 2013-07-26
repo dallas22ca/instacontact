@@ -1,0 +1,12 @@
+<div id="paid_clients" class="list">
+  <h3>25 Paid Clients</h3>
+  <ol>
+    <% Client.paid.each do |client| %>
+      <li><span class="name"><%= client.name %></span></li>
+    <% end %>
+  
+    <% (25 - Client.paid.count).times do %>
+      <li> &nbsp; </li>
+    <% end %>
+  </ol>
+</div>

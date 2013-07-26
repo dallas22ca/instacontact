@@ -1,0 +1,8 @@
+$("<%= j render @client %>").insertBefore("#clients .client_suggester")
+$("#paid_clients").replaceWith("<%= j render "dashboard/paid_clients" %>")
+
+Clients.select($("#<%= dom_id @client %>"))
+$("#<%= dom_id @client %>").click()
+
+$("#new_client")[0].reset()
+$("#new_client").hide()

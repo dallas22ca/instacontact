@@ -1,0 +1,4 @@
+<%= form_for Note.new, remote: true, html: { id: "new_note_#{client.id}" } do |f| %>
+  <%= f.hidden_field :client_id, value: client.id %>
+  <%= f.text_field :body, placeholder: "What's happening?", style: "width: 100%; " %><br />
+<% end %>

@@ -1,0 +1,48 @@
+#clients {
+  width: 100%;
+  margin: 5px 0 0 0; 
+  list-style: none; 
+  
+  .client {
+    &.open {
+      background: #D0F1C4;
+      
+      .details {
+        display: block;
+      }
+    }
+    
+    a {
+      color: #000; 
+      text-decoration: none; 
+    }
+    
+    .details {
+      display: none;
+    }
+    
+    select {
+      float: right;
+    }
+    
+    .client_meta {
+      float: right;
+      font-size: 11px;
+      color: #bbb;
+      
+      a {
+        color: #999;
+      }
+    }
+  }
+}
+
+#paid_clients {
+  .name {
+    color: #333;
+  }
+}
+
+#new_client {
+  display: none;
+}

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Instacontact::Application.load_tasks
+Instaclient::Application.load_tasks

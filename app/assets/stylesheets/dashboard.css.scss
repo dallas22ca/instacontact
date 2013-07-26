@@ -1,3 +1,86 @@
-// Place all the styles related to the dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	font-family: Helvetica, Sans Serif;
+}   
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+}
+
+.selected {
+	border: 5px solid #333 !important;
+}
+
+#clients li {
+	border: 5px solid transparent;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px; 
+}
+
+@media screen and (min-width:640px) {
+  #main {
+    width: 70%;
+    float: left;
+  }
+
+  #sidebar {
+    float: right;
+    width: 26%;
+  }
+}
+
+#sidebar {
+  padding: 2%;
+  font-size: 14px;
+  line-height: 18px;
+  
+  h3 {
+    font-weight: bold;
+    font-size: 18px; 
+    margin-bottom: 12px;
+  }
+  
+  ol {
+    list-style: decimal;
+    margin: 0 0 0 30px;
+    color: #ccc;
+  }
+  
+  .list {
+    margin-bottom: 25px;
+    color: #333;
+    
+    li {
+      margin-bottom: 5px;
+    }
+    
+    .todo_list {
+      li {
+        input[type="checkbox"] {
+          width: 12%;
+          float: left;
+          text-align: right;
+        }
+      
+        .body {
+          width: 83%;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+#q {
+  box-sizing: border-box; 
+  width: 100%; 
+  font-size: 16px; 
+  padding: 7px;
+}

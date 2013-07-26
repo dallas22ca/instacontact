@@ -1,66 +1,29 @@
-<input autofocus style="box-sizing: border-box; width: 100%; font-size: 16px; padding: 7px;" placeholder="Find or Create by Name.">
+<div id="main">
+  <%= text_field_tag :q, "", autocomplete: :off, autofocus: true, placeholder: "Find or Create by Name..."%>
 
-<ul style="width: 100%; margin: 5px 0 0 -40px; list-style: none; ">
-	<% 25.times do %>
-		<li class="contact" style="background: #eee; padding: 10px; margin-bottom: 5px; ">
-			<select style="float: right; ">
-				<option>Uncontacted</option>
-				<option>Useless</option>
-				<option>Interested</option>
-				<option>Paid</option>
-			</select>
-			<a href="mailto: mel-read@hotmail.com" style="color: #000; text-decoration: none; ">
-				<h3 style="margin: 0; ">Melanie Read</h3>
-				<h4 style="margin: 4px 0 0 0; color: #777; line-height: 1.2em; font-size: 17px; font-weight: normal; ">
-					Kids &amp; Company<br>
-					mel-read@hotmail.com &nbsp; &nbsp; &nbsp;
-					(902) 999-9999
-				</h4>
-				<p style="font-size: 13px; line-height: 18px; color: #aaa; ">
-					This is the last interaction I had will Mel. 
-					This is the last interaction I had will Mel. 
-					This is the last interaction I had will Mel. 
-					This is the last interaction I had will Mel. 
-				</p>
-			</a>
-		</li>
-	<% end %>
+  <ul id="clients" style="">
+    <%= render Client.all %>
 	
-	<li class="suggester" style="background: #eee; padding: 10px; margin-top: 5px; ">
-		<a href="#">
-			Add <span class="add_name" style="font-weight: bold; "></span> to the db.
-		</a>
-	</li>
+  	<li class="suggester client_suggester" style="background: #eee; padding: 10px; margin-top: 5px; ">
+  		<a href="#" class="show_new_client_form">
+  			Add <span class="name" style="font-weight: bold; "></span> to the db.
+  		</a>
+      <%= render "clients/form" %>
+  	</li>
 
-</ul>
+  </ul>
+</div>
 
-<script>
-	$(document).on("keyup", function(e){
-		var code = (e.keyCode ? e.keyCode : e.which);
-		if (code == 40)
-		{
-			var index = $(".selected").index() + 1;
-		}
-		else if (code == 38)
-		{
-			var index = $(".selected").index() - 1;
-			if (index < 0) { index = 0; }	
-		}
-		else
-		{
-			var q = $("input").val();
-			$(".contact").hide();
-			$(".contact:lt(" + q.length + ")").show();
-			$(".add_name").text(q);
-			$("ul li").removeClass("selected");
-			$("ul li:first").addClass("selected");
-		}
-
-		if (code == 38 || code == 40)
-		{
-			$(".selected").removeClass("selected");
-			$("ul li:eq(" + index.toString() + ")").addClass("selected");
-			return false;
-		}	
-	});
-</script>
+<div id="sidebar">
+  <% [["Big Problems", 1]].each do |list, id| %>
+    <div class="list">
+      <h3><%= list %></h3>
+      <ul id="list_<%= id %>" class="todo_list">
+        <%= render Task.where(list_id: id) %>
+        <li class="suggester task_suggester"><%= render partial: "tasks/form", locals: { list_id: id } %></li>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= render "paid_clients" %>
+</div>

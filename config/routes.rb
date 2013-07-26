@@ -1,4 +1,10 @@
-Instacontact::Application.routes.draw do
+Instaclient::Application.routes.draw do
+  resources :notes
+
+  resources :tasks
+
+  resources :clients
+
   root "dashboard#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

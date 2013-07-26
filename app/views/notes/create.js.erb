@@ -1,0 +1,4 @@
+<% if @note.valid? %>
+  $("<%= j render @note %>").insertBefore("#<%= dom_id @note.client %> .notes .note_suggester")
+  $("#new_note_<%= @note.client_id %>")[0].reset()
+<% end %>

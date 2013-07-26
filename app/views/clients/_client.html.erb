@@ -1,0 +1,33 @@
+<%= content_tag_for :li, client do %>
+  <%= form_for client, remote: true, html: { id: nil } do |f| %>
+    <%= f.select :state, options_for_select([["Not Contacted", :not_contacted], ["Useless", :useless], ["Interested", :interested], ["Paid", :paid]], client.state), {}, { id: nil, class: "client_state" } %>
+  <% end %>
+  
+  <div class="info">
+  	<h3 style="font-weight: bold; font-size: 21px; margin: 0 0 4px 0; "><%= client.name %></h3>
+  	<h4 style="color: #666; line-height: 1.2em; font-size: 15px; font-weight: normal; ">
+  		<span class="rest-in-place" data-url="<%= client_path(client) %>" data-object="client" data-attribute="company"><%= client.company.blank? ? "Company" : client.company %></span><br>
+  		<span class="rest-in-place" data-url="<%= client_path(client) %>" data-object="client" data-attribute="email"><%= client.email.blank? ? "Email" : client.email %></span> &nbsp; &nbsp; &nbsp;
+  		<span class="rest-in-place" data-url="<%= client_path(client) %>" data-object="client" data-attribute="phone"><%= client.phone.blank? ? "Phone" : client.phone %></span>
+  	</h4>
+  	<p style="margin: 4px 0 0 0; font-size: 13px; line-height: 18px; color: #aaa; ">
+  		<%= client.notes.last.body.truncate(50) if client.notes.last %>
+  	</p>
+    
+    <div class="details">
+      <ul class="notes">
+        <%= render client.notes %>
+        <li class="suggester note_suggester">
+          <%= render partial: "notes/form", locals: { client: client } %>
+        </li>
+      </ul>
+    
+      <p class="client_meta">
+        <%= link_to "Done", "#", class: "close" %> or
+        <%= link_to "Delete", client, method: :delete, remote: true, data: { confirm: "Are you sure you want to delete this client?" } %>
+      </p>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
+<% end %>

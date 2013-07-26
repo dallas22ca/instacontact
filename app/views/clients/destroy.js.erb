@@ -1,0 +1,3 @@
+$("#paid_clients").replaceWith("<%= j render "dashboard/paid_clients" %>")
+$("#<%= dom_id @client %>").remove()
+Clients.unselect()
